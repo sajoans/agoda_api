@@ -18,7 +18,7 @@ namespace AgodaApiExercise.Tests.Core.RateLimit
 
 
         [TestMethod]
-        public async Task ShouldAllowRequestsWithinRateLimitAndNotBlacklisted()
+        public async Task RateLimitFilter_ShouldAllowRequestsWithinRateLimitAndNotBlacklisted()
         {
             // Arrange
             var testKey = "key" + _random.Next();
@@ -47,7 +47,7 @@ namespace AgodaApiExercise.Tests.Core.RateLimit
         }
 
         [TestMethod]
-        public async Task ShouldDisallowRequestsOverRateLimitAndNotBlacklisted()
+        public async Task RateLimitFilter_ShouldDisallowRequestsOverRateLimitAndNotBlacklisted()
         {
 
             // Arrange
@@ -86,7 +86,7 @@ namespace AgodaApiExercise.Tests.Core.RateLimit
 
 
         [TestMethod]
-        public async Task ShouldDisallowRequestsWithinRateLimitAndBlacklisted()
+        public async Task RateLimitFilter_ShouldDisallowRequestsWithinRateLimitAndBlacklisted()
         {
 
             // Arrange
@@ -128,7 +128,7 @@ namespace AgodaApiExercise.Tests.Core.RateLimit
         }
 
         [TestMethod]
-        public async Task ShouldDisallowRequestsOverRateLimitAndBlacklisted()
+        public async Task RateLimitFilter_ShouldDisallowRequestsOverRateLimitAndBlacklisted()
         {
 
             // Arrange
@@ -171,7 +171,7 @@ namespace AgodaApiExercise.Tests.Core.RateLimit
         }
 
         [TestMethod]
-        public async Task ShouldBlackListKeyWhenOverRateLimit()
+        public async Task RateLimitFilter_ShouldBlackListKeyWhenOverRateLimit()
         {
 
             // Arrange

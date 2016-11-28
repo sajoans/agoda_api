@@ -6,11 +6,9 @@ using System.Web;
 
 namespace AgodaApiExercise.Core.RateLimit
 {
-    // This is be a singleton class
     public sealed class RateLimiter:IRateLimiter
     {
         private static object syncRoot = new Object();
-
         private int _period;
         private int _requestThreshold;
 
@@ -24,11 +22,7 @@ namespace AgodaApiExercise.Core.RateLimit
         {
             lock (syncRoot)
             {
-                if (AccessCountForCurrentPeriod(key) <= _requestThreshold)
-                {
-                    return true;
-                }
-                return false;
+                return (AccessCountForCurrentPeriod(key) <= _requestThreshold);
             }          
         }
 

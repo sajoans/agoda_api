@@ -12,7 +12,6 @@ namespace AgodaApiExercise.Core
             var hotelsLines = System.IO.File.ReadAllLines(filePath).ToList();
             hotelsLines.RemoveAt(0); // remove header
             return hotelsLines;
-
         }
     }
 }
