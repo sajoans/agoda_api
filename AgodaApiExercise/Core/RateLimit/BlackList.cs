@@ -9,7 +9,7 @@ namespace AgodaApiExercise.Core.RateLimit
     public class BlackList : IBlackList
     {
         private readonly int _duration;
-        private const string _prefix = "blklst_";
+        public const string _prefix = "blklst_";
 
         public BlackList(int duration)
         {

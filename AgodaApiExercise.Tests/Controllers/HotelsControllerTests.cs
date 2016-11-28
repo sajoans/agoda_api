@@ -22,7 +22,7 @@ namespace AgodaApiExercise.Tests.Controllers
                  new Hotel() {HotelId=123,City="Kansas", Price=200, Room="delux" },
                   new Hotel() {HotelId=123,City="Kansas", Price=200, Room="delux" }
             };
-            mockedRepository.Get(Arg.Any<string>()).Returns(expectedData);
+            mockedRepository.Get(Arg.Any<string>(),null).Returns(expectedData);
             var controller = new HotelsController(mockedRepository);
 
             // Act

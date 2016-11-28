@@ -30,7 +30,7 @@ namespace AgodaApiExercise.Tests.Core.RateLimit
         {
             // Arrange
             string testKey = "test1";
-            MemoryCache.Default.Set(testKey, true, DateTime.Now.AddSeconds(10));
+            MemoryCache.Default.Set(BlackList._prefix + testKey, true, DateTime.Now.AddSeconds(10));
 
             // Act
             var actualResult = _blackList.IsBlackListed(testKey);
@@ -49,7 +49,7 @@ namespace AgodaApiExercise.Tests.Core.RateLimit
             _blackList.Add(testKey);
 
             // Assert
-            Assert.IsTrue((bool)MemoryCache.Default[testKey]);
+            Assert.IsTrue((bool)MemoryCache.Default[BlackList._prefix + testKey]);
         }
     }
 }

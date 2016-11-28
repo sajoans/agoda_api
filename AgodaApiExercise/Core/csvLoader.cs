@@ -7,7 +7,6 @@ namespace AgodaApiExercise.Core
 {
     public class CsvLoader:ICsvLoader
     {
-
         public IEnumerable<string> ReadLines(string filePath)
         {
             var hotelsLines = System.IO.File.ReadAllLines(filePath).ToList();

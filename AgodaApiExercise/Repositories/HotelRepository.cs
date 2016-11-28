@@ -7,19 +7,20 @@ using System.Web;
 
 namespace AgodaApiExercise.Repositories
 {
-    public class HotelRepository:IHotelRepository
+    public class HotelRepository : IHotelRepository
     {
         private ICsvLoader _csvLoader;
+        private string _dataSroucePath;
 
-        public HotelRepository(ICsvLoader csvLoader)
+        public HotelRepository(ICsvLoader csvLoader, string dataPath = null)
         {
             _csvLoader = csvLoader;
+            _dataSroucePath = dataPath ?? HttpContext.Current.Request.MapPath("~\\App_Data\\hotels.csv");
         }
 
         public IEnumerable<Hotel> Get(string cityId, SortOrder? priceSortOrder)
         {
-            var dataPath = System.Web.HttpContext.Current.Request.MapPath("~\\App_Data\\hotels.csv");
-            var hotelsLines = _csvLoader.ReadLines(dataPath);
+            var hotelsLines = _csvLoader.ReadLines(_dataSroucePath);
 
             IEnumerable<Hotel> hotels =
             from hotelsLine in hotelsLines
@@ -32,8 +33,8 @@ namespace AgodaApiExercise.Repositories
                 Room = hotelsLineItems[2],
                 Price = double.Parse(hotelsLineItems[3])
             };
-              
-            if (priceSortOrder!=null && priceSortOrder == SortOrder.DESC)
+
+            if (priceSortOrder != null && priceSortOrder == SortOrder.DESC)
             {
                 return hotels.ToList().OrderByDescending(hotel => hotel.Price);
             }
