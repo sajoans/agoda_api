@@ -24,12 +24,15 @@ namespace AgodaApiExercise.Controllers
         [HttpGet]
         [Route("city/{cityId}")]
         public IEnumerable<Hotel> GetHotelsByCity(string cityId, string pricesort = null)
-        {
-            if (pricesort == null)
+        {           
+            var sort = (SortOrder?)(pricesort == null ? null : Enum.Parse(typeof(SortOrder), pricesort.ToUpper()));
+            var result = _hotelRepository.Get(cityId, sort);
+
+            if (!result.Any())
             {
-                return _hotelRepository.Get(cityId, null);
+                throw new HttpResponseException(HttpStatusCode.NotFound);
             }
-            return _hotelRepository.Get(cityId, (SortOrder)Enum.Parse(typeof(SortOrder), pricesort.ToUpper()));
+            return result;
         }
 
     }
